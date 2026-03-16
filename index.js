@@ -109,6 +109,35 @@ app.get("/propriedade", (req, res) => {
     res.json(exercicios);
   });
 
+
+  app.get("/exercicio/:id", (req, res) => {
+    let id = req.params.id;
+  
+    res.json({
+      mensagem: "Você pediu o exercício",
+      id: id
+    });
+  });
+  
+  app.get("/buscar", (req, res) => {
+    let vestibular = req.query.vestibular;
+  
+    res.send({
+      mensagem: "Busca por vestibular",
+      vestibular: vestibular
+    });
+  });
+  
+  app.post("/novo-exercicio", (req, res) => {
+    const { questao, resolucao } = req.body;
+  
+    res.json({
+      mensagem: "Exercício recebido",
+      questao: questao,
+      resolucao: resolucao
+    });
+  });
+
 //Porta
 const porta = 3000;
 app.listen(porta, () => {
@@ -122,8 +151,5 @@ http://localhost:3000/vestibular1
 http://localhost:3000/vestibular2
 http://localhost:3000/vestibular3
 http://localhost:3000/vestibular4
-http://localhost:3000/vestibular5
-*/
-bular4
 http://localhost:3000/vestibular5
 */
