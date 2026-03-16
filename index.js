@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/exercicios-basicos", (req, res) => {
-  res.json({
+  res.send({
     titulo: "10 Exercícios Básicos Resolvidos",
     exercicios: [
       { questao: "2^3", resolucao: "2*2*2 = 8" },
@@ -22,40 +22,47 @@ app.get("/exercicios-basicos", (req, res) => {
 });
 
 app.get("/propriedades", (req, res) => {
-    res.json({
+    res.send({
         titulo: "Principais Propriedades de Potências",
         propriedades: [
           {
+            id: 1,
             nome: "Produto de potências de mesma base",
             regra: "a^m * a^n = a^(m+n)",
             exemplo: "2^3 * 2^4 = 2^(3+4) = 2^7 = 128"
           },
           {
+            id: 2,
             nome: "Divisão de potências de mesma base",
             regra: "a^m / a^n = a^(m-n)",
             exemplo: "5^6 / 5^2 = 5^(6-2) = 5^4 = 625"
           },
           {
+            id: 3,
             nome: "Potência de potência",
             regra: "(a^m)^n = a^(m*n)",
             exemplo: "(3^2)^3 = 3^(2*3) = 3^6 = 729"
           },
           {
+            id: 4,
             nome: "Potência de produto",
             regra: "(a*b)^n = a^n * b^n",
             exemplo: "(2*3)^2 = 2^2 * 3^2 = 4 * 9 = 36"
           },
           {
+            id: 5,
             nome: "Potência de quociente",
             regra: "(a/b)^n = a^n / b^n",
             exemplo: "(4/2)^2 = 4^2 / 2^2 = 16/4 = 4"
           },
           {
+            id: 6,
             nome: "Expoente zero",
             regra: "a^0 = 1 (a ≠ 0)",
             exemplo: "7^0 = 1"
           },
           {
+            id: 7,
             nome: "Expoente negativo",
             regra: "a^-n = 1 / a^n",
             exemplo: "2^-3 = 1 / 2^3 = 1/8"
@@ -66,7 +73,7 @@ app.get("/propriedades", (req, res) => {
   });
 
 app.get("/vestibular1", (req, res) => {
-  res.json({
+  res.send({
     vestibular: "ENEM",
     questao: "Simplifique: 2^3 * 2^5",
     resolucao: "2^(3+5) = 2^8 = 256"
@@ -74,7 +81,7 @@ app.get("/vestibular1", (req, res) => {
 });
 
 app.get("/vestibular2", (req, res) => {
-  res.json({
+  res.send({
     vestibular: "FUVEST",
     questao: "Simplifique: (3^2)^3",
     resolucao: "3^(2*3) = 3^6 = 729"
@@ -82,7 +89,7 @@ app.get("/vestibular2", (req, res) => {
 });
 
 app.get("/vestibular3", (req, res) => {
-  res.json({
+  res.send({
     vestibular: "UNICAMP",
     questao: "Simplifique: 5^6 / 5^2",
     resolucao: "5^(6-2) = 5^4 = 625"
@@ -90,7 +97,7 @@ app.get("/vestibular3", (req, res) => {
 });
 
 app.get("/vestibular4", (req, res) => {
-  res.json({
+  res.send({
     vestibular: "UNESP",
     questao: "Resolva: 10^-2",
     resolucao: "1 / 10^2 = 1/100 = 0.01"
@@ -98,7 +105,7 @@ app.get("/vestibular4", (req, res) => {
 });
 
 app.get("/vestibular5", (req, res) => {
-  res.json({
+  res.send({
     vestibular: "UFRJ",
     questao: "Simplifique: (2*3)^2",
     resolucao: "2^2 * 3^2 = 4 * 9 = 36"
@@ -106,22 +113,20 @@ app.get("/vestibular5", (req, res) => {
 });
 
 app.get("/propriedade", (req, res) => {
-    res.json(exercicios);
+    res.send(exercicios);
   });
 
 
   app.get("/exercicio/:id", (req, res) => {
     let id = req.params.id;
   
-    res.json({
-      mensagem: "Você pediu o exercício",
+    res.send({mensagem: "Você pediu o exercício",
       id: id
     });
   });
   
   app.get("/buscar", (req, res) => {
     let vestibular = req.query.vestibular;
-  
     res.send({
       mensagem: "Busca por vestibular",
       vestibular: vestibular
@@ -129,12 +134,9 @@ app.get("/propriedade", (req, res) => {
   });
   
   app.post("/novo-exercicio", (req, res) => {
-    const { questao, resolucao } = req.body;
+    let { questao, resolucao } = req.body;
   
-    res.send({
-      mensagem: "Exercício recebido",
-      questao: questao,
-      resolucao: resolucao
+    res.send({questao, resolucao
     });
   });
 
