@@ -131,7 +131,7 @@ app.get("/propriedade", (req, res) => {
   app.post("/novo-exercicio", (req, res) => {
     const { questao, resolucao } = req.body;
   
-    res.json({
+    res.send({
       mensagem: "Exercício recebido",
       questao: questao,
       resolucao: resolucao
